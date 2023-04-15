@@ -50,3 +50,5 @@ fig_histo_2 = px.histogram(df, x='odometer')
 # fig_histo_2.show()
 
 st.write(fig_histo_2)
+
+streamlit run app.py
