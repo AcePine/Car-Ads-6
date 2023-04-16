@@ -1,2 +1,2 @@
 Pandas
-plotly-exress
+plotly-exress 0.4.1
