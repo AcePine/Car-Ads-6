@@ -1,2 +1,2 @@
-Pandas==1.5.3
+Pandas
 plotly-express==0.4.1
