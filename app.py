@@ -5,9 +5,9 @@ import plotly_express as px
 df = pd.read_csv('vehicles_us.csv')
 
 
-st.header('Price of Cars by Manufacturer')
+st.header('Price of Cars by Car Type')
 
-fig_scatter = px.scatter(df, x='manufacturer', y='price')
+fig_scatter = px.scatter(df, x='type', y='price')
 
 st.write(fig_scatter)
 
