@@ -54,8 +54,6 @@ fig_histo_new = px.histogram(df, x='price', color='condition', marginal='rug',
 
 fig_histo_new.update_layout(xaxis_title='Price', yaxis_title='Count')
 
-show_rug = st.checkbox('Show Rug Plot')
-
 show_outliers_histo = st.checkbox('Show The Outliers', value=False)
 
 if show_outliers_histo:
