@@ -7,7 +7,7 @@ df = pd.read_csv('vehicles_us.csv')
 
 # creating a scatter plot for price distribution
 
-st.header('Distribution of Prices by Odemeter Count')
+st.header('Distribution of Prices by Odemeter Miles')
 
 fig_scatter_new = px.scatter(df, x='price', y='odometer', color='condition',
                              color_discrete_map={
@@ -38,7 +38,7 @@ st.plotly_chart(fig_scatter_new)
 
 # creating a histogram for price distribution
 
-st.header('Distribution of Prices by Condition')
+st.header('Distribution of Prices by Vehicle Condition')
 
 fig_histo_new = px.histogram(df, x='price', color='condition', marginal='rug',
                              color_discrete_map={
@@ -56,9 +56,9 @@ fig_histo_new.update_layout(xaxis_title='Price', yaxis_title='Count')
 
 show_rug = st.checkbox('Show Rug Plot')
 
-show_outliers = st.checkbox('Show Outliers', value=False)
+show_outliers_histo = st.checkbox('Show Outliers', value=False)
 
-if show_outliers:
+if show_outliers_histo:
     fig_histo_new.update_layout(xaxis_range=[0, 350000])
 else:
     fig_histo_new.update_layout(xaxis_range=[0, 100000])
