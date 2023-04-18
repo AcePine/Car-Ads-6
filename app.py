@@ -9,7 +9,7 @@ df = pd.read_csv('vehicles_us.csv')
 
 st.header('Distribution of Prices by Odemeter Count')
 
-fig_scatter_new = px.scatter(df, x='price', y='odometer', color='condition', hover_data=['model', 'manufacturer'],
+fig_scatter_new = px.scatter(df, x='price', y='odometer', color='condition',
                              color_discrete_map={
                                 "new": "green",
                                 "like new": "blue",
@@ -31,9 +31,9 @@ else:
     fig_scatter_new.update_layout(xaxis_range=[0, 100000])
     fig_scatter_new.update_layout(yaxis_range=[0,350000])
 
-fig_scatter_new.show()
+# fig_scatter_new.show()
 
-# st.plotly_chart(fig_scatter_new)
+st.plotly_chart(fig_scatter_new)
 
 
 # creating a histogram for price distribution
@@ -63,6 +63,6 @@ if show_outliers:
 else:
     fig_histo_new.update_layout(xaxis_range=[0, 100000])
 
-fig_histo_new.show()
+# fig_histo_new.show()
 
 st.plotly_chart(fig_histo_new)
