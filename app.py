@@ -8,7 +8,7 @@ df = pd.read_csv('vehicles_us.csv')
 # creating first scatter plot using plotly-express
 st.header('Price of Cars by Manufacturer')
 
-fig_scatter = px.scatter(df, x='manufacturer', y='price')
+fig_scatter = px.scatter(df, x='type', y='price')
 
 st.plotly_chart(fig_scatter)
 
