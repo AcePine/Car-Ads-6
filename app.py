@@ -5,43 +5,64 @@ import plotly_express as px
 df = pd.read_csv('vehicles_us.csv')
 
 
-# creating first scatter plot using plotly-express
-st.header('Price of Cars by Manufacturer')
+# creating a scatter plot for price distribution
 
-fig_scatter = px.scatter(df, x='type', y='price')
+st.header('Distribution of Prices by Odemeter Count')
 
-st.plotly_chart(fig_scatter)
+fig_scatter_new = px.scatter(df, x='price', y='odometer', color='condition', hover_data=['model', 'manufacturer'],
+                             color_discrete_map={
+                                "new": "green",
+                                "like new": "blue",
+                                "excellent": "orange",
+                                "good": "yellow",
+                                "fair": "red",
+                                "salvage": "black"
+                             },
+                             category_orders={'condition': ['new', 'like new', 'excellent', 'good', 'fair', 'salvage']})
 
+fig_scatter_new.update_layout(xaxis_title='Price', yaxis_title='Odometer')
 
-st.header('Average Car Listed for 24 Days')
+show_outliers_scatter = st.checkbox('Show Outliers', value=False)
 
-fig_bar = px.bar(df, x='days_listed', y='model_year')
-
-st.plotly_chart(fig_bar)
-
-
-st.header('Most Popular Car For Sale is from 2011')
-
-fig_histo = px.histogram(df, x='model_year')
-
-# fig_histo.show()
-
-st.plotly_chart(fig_histo)
-
-
-st.header('Most Listed Cars Have Between 120k-125k Miles')
-
-# Create a checkbox
-show_outliers = st.checkbox('Show Outliers')
-
-# Filter the data based on the checkbox value
-if show_outliers:
-    filtered_df = df
+if show_outliers_scatter:
+    fig_scatter_new.update_layout(xaxis_range=[0, 350000])
+    fig_scatter_new.update_layout(yaxis_range=[0,500000])
 else:
-    filtered_df = df[df['odometer'].between(0, 300000)]
+    fig_scatter_new.update_layout(xaxis_range=[0, 100000])
+    fig_scatter_new.update_layout(yaxis_range=[0,350000])
 
-# Create the histogram using the filtered data
-fig_histo_2 = px.histogram(filtered_df, x='odometer')
+fig_scatter_new.show()
 
-# Display the histogram
-st.plotly_chart(fig_histo_2)
+# st.plotly_chart(fig_scatter_new)
+
+
+# creating a histogram for price distribution
+
+st.header('Distribution of Prices by Condition')
+
+fig_histo_new = px.histogram(df, x='price', color='condition', marginal='rug',
+                             color_discrete_map={
+                                "new": "green",
+                                "like new": "blue",
+                                "excellent": "orange",
+                                "good": "yellow",
+                                "fair": "red",
+                                "salvage": "black"
+                             },
+                             category_orders={'condition': ['new', 'like new', 'excellent', 'good', 'fair', 'salvage']}
+                             )
+
+fig_histo_new.update_layout(xaxis_title='Price', yaxis_title='Count')
+
+show_rug = st.checkbox('Show Rug Plot')
+
+show_outliers = st.checkbox('Show Outliers', value=False)
+
+if show_outliers:
+    fig_histo_new.update_layout(xaxis_range=[0, 350000])
+else:
+    fig_histo_new.update_layout(xaxis_range=[0, 100000])
+
+fig_histo_new.show()
+
+st.plotly_chart(fig_histo_new)
