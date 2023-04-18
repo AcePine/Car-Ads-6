@@ -5,18 +5,19 @@ import plotly_express as px
 df = pd.read_csv('vehicles_us.csv')
 
 
-st.header('Price of Cars by Car Type')
+# creating first scatter plot using plotly-express
+st.header('Price of Cars by Manufacturer')
 
-fig_scatter = px.scatter(df, x='type', y='price')
+fig_scatter = px.scatter(df, x='manufacturer', y='price')
 
-st.write(fig_scatter)
+st.plotly_chart(fig_scatter)
 
 
 st.header('Average Car Listed for 24 Days')
 
 fig_bar = px.bar(df, x='days_listed', y='model_year')
 
-st.write(fig_bar)
+st.plotly_chart(fig_bar)
 
 
 st.header('Most Popular Car For Sale is from 2011')
@@ -25,7 +26,7 @@ fig_histo = px.histogram(df, x='model_year')
 
 # fig_histo.show()
 
-st.write(fig_histo)
+st.plotly_chart(fig_histo)
 
 
 st.header('Most Listed Cars Have Between 120k-125k Miles')
@@ -44,9 +45,3 @@ fig_histo_2 = px.histogram(filtered_df, x='odometer')
 
 # Display the histogram
 st.plotly_chart(fig_histo_2)
-
-fig_histo_2 = px.histogram(df, x='odometer')
-
-# fig_histo_2.show()
-
-st.write(fig_histo_2)
