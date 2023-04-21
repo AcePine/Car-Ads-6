@@ -40,17 +40,6 @@ else:
     fig_scatter_new.update_layout(xaxis_range=[0, 100000])
     fig_scatter_new.update_layout(yaxis_range=[0,350000])
 
-    
-# add manufacturer dropdown filter
-
-manufacturer_filter = st.sidebar.selectbox(
-    label="Select manufacturer:",
-    options=df.manufacturer.unique()
-)
-fig_scatter_new.update_traces(visible=False, showlegend=False)
-fig_scatter_new.update_traces(visible=True, showlegend=True,
-                              selector=dict(name=df[df.manufacturer == manufacturer_filter].manufacturer.unique()[0]))
-
 # fig_scatter_new.show()
 
 st.plotly_chart(fig_scatter_new)
