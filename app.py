@@ -44,6 +44,13 @@ histogram_1 = px.histogram(df, 'price', color=histogram_choice,)
 histogram_1.update_layout(
     title="<b> Breakdown of price by {}</b>".format(histogram_choice))
 
+show_histogram_checkbox = st.checkbox('Show Outliers', value=False)
+
+if show_histogram_checkbox:
+    histogram_1.update_layout(xaxis_range=[0, 200000])
+else:
+    histogram_1.update_layout(xaxis_range=[0, 80000])
+
 histogram_1.show()
 
 st.plotly_chart(histogram_1)
