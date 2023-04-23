@@ -12,12 +12,16 @@ import plotly_express as px
 df = pd.read_csv('vehicles_us.csv')
 
 st.header("""
-# The Market of Used Cars
+The Market of Used Cars
+""")
+
+st.write("""
+### This application helps us take a closer look at data surrounding new & used cars.
 """)
 
 # creating checkbox that allows the user to show or hide new cars within the application
 st.write("""
-#### Would you like to show or hide new cars?
+###### Would you like to show or hide new cars?
 """)
 show_new_cars = st.checkbox('Show New Cars')
 
@@ -29,7 +33,7 @@ if not show_new_cars:
 st.header('Price Analysis')
 
 st.write("""
-#### Use the dropdown to select different attributes. You will discover how each attribute affects the vehicle price.
+###### Use the dropdown to select different attributes. You will discover how each attribute affects the vehicle price.
 """)
 
 histogram_list = ['condition', 'type', 'transmission', 'paint_color']
