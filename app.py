@@ -11,6 +11,39 @@ import plotly_express as px
 
 df = pd.read_csv('vehicles_us.csv')
 
+st.header("""
+# The Market of Used Cars
+""")
+
+# creating checkbox that allows the user to show or hide new cars within the application
+st.write("""
+#### Would you like to show or hide new cars?
+""")
+show_new_cars = st.checkbox('Show New Cars')
+
+if not show_new_cars:
+    df = df[df.condition!='new']
+
+
+# creating a histogram with multiple data aspects, and the inclusion of a selectbox that the user can interact with
+st.header('Price Analysis')
+
+st.write("""
+#### Use the dropdown to select different attributes. You will discover how each attribute affects the vehicle price.
+""")
+
+histogram_list = ['condition', 'type', 'transmission', 'paint_color']
+histogram_choice = st.selectbox('Select Variable', histogram_list)
+
+histogram_1 = px.histogram(df, 'price', color=histogram_choice,)
+
+histogram_1.update_layout(
+    title="<b> Breakdown of price by {}</b>".format(histogram_choice))
+
+histogram_1.show()
+
+st.plotly_chart(histogram_1)
+
 
 # creating a scatter plot for price distribution
 
@@ -35,10 +68,10 @@ show_outliers_scatter = st.checkbox('Show Me Outliers', value=False)
 
 if show_outliers_scatter:
     fig_scatter_new.update_layout(xaxis_range=[0, 350000])
-    fig_scatter_new.update_layout(yaxis_range=[0,500000])
+    fig_scatter_new.update_layout(yaxis_range=[0, 500000])
 else:
     fig_scatter_new.update_layout(xaxis_range=[0, 100000])
-    fig_scatter_new.update_layout(yaxis_range=[0,350000])
+    fig_scatter_new.update_layout(yaxis_range=[0, 350000])
 
 # fig_scatter_new.show()
 
